@@ -210,26 +210,24 @@ On every push to `main`, the pipeline:
 
 1. Checks out the repository
 2. Sets up Java 17
-3. Configures AWS credentials
-4. Validates Terraform syntax
-5. Runs automated tests
-6. Builds the Spring Boot JAR
-7. Builds the Docker image
-8. Logs in to Docker Hub
-9. Pushes the image with `latest` and commit SHA tags
-10. Connects to EC2 over SSH
-11. Pulls the latest image
-12. Restarts the application container without rebuilding on the server
+3. Validates Terraform syntax
+4. Runs automated tests
+5. Builds the Spring Boot JAR
+6. Builds the Docker image
+7. Optionally logs in to Docker Hub and pushes the image when registry secrets are configured
+8. Optionally connects to EC2 over SSH and deploys the new image when deployment secrets are configured
 
 ### Required GitHub Secrets
 
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `DOCKER_USERNAME`
-- `DOCKER_PASSWORD`
-- `EC2_HOST`
-- `EC2_USER`
-- `EC2_SSH_KEY`
+- `DOCKER_USERNAME` and `DOCKER_PASSWORD` for Docker Hub image publishing
+- `EC2_HOST`, `EC2_USER`, and `EC2_SSH_KEY` for remote EC2 deployment
+
+Notes:
+
+- Terraform validation, tests, and local Docker image build run without AWS credentials.
+- If Docker Hub secrets are missing, the workflow still performs CI checks and skips image publishing.
+- If EC2 SSH secrets are missing, the workflow skips the deploy job while keeping the build job green.
+- AWS credentials are only needed if you later extend the workflow to perform `terraform apply` or other live AWS API actions.
 
 ## Security Features
 

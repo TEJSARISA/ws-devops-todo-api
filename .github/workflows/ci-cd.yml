@@ -8,12 +8,15 @@ on:
 env:
   APP_DIR: app
   INFRA_DIR: infra
-  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/ws-devops-todo-api
+  LOCAL_IMAGE_NAME: ws-devops-todo-api
   AWS_REGION: ap-south-1
 
 jobs:
   build-test-publish:
     runs-on: ubuntu-latest
+    outputs:
+      deploy_ready: ${{ steps.release-flags.outputs.deploy_ready }}
+      image_name: ${{ steps.release-flags.outputs.image_name }}
 
     steps:
       - name: Checkout repository
@@ -26,12 +29,28 @@ jobs:
           java-version: "17"
           cache: maven
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+      - name: Determine optional release steps
+        id: release-flags
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+        run: |
+          if [ -n "$DOCKER_USERNAME" ] && [ -n "$DOCKER_PASSWORD" ]; then
+            echo "docker_ready=true" >> "$GITHUB_OUTPUT"
+            echo "image_name=${DOCKER_USERNAME}/ws-devops-todo-api" >> "$GITHUB_OUTPUT"
+          else
+            echo "docker_ready=false" >> "$GITHUB_OUTPUT"
+            echo "image_name=ws-devops-todo-api" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ -n "$DOCKER_USERNAME" ] && [ -n "$DOCKER_PASSWORD" ] && [ -n "$EC2_HOST" ] && [ -n "$EC2_USER" ] && [ -n "$EC2_SSH_KEY" ]; then
+            echo "deploy_ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy_ready=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Validate Terraform
         uses: hashicorp/setup-terraform@v3
@@ -54,30 +73,43 @@ jobs:
         run: |
           docker build \
             -f ${{ env.APP_DIR }}/Dockerfile \
-            -t $IMAGE_NAME:latest \
-            -t $IMAGE_NAME:${{ github.sha }} \
+            -t $LOCAL_IMAGE_NAME:latest \
+            -t $LOCAL_IMAGE_NAME:${{ github.sha }} \
             ${{ env.APP_DIR }}
 
       - name: Login to DockerHub
+        if: steps.release-flags.outputs.docker_ready == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Push Docker image
+      - name: Tag Docker image for registry
+        if: steps.release-flags.outputs.docker_ready == 'true'
         run: |
-          docker push $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:${{ github.sha }}
+          docker tag $LOCAL_IMAGE_NAME:latest ${{ steps.release-flags.outputs.image_name }}:latest
+          docker tag $LOCAL_IMAGE_NAME:${{ github.sha }} ${{ steps.release-flags.outputs.image_name }}:${{ github.sha }}
+
+      - name: Push Docker image
+        if: steps.release-flags.outputs.docker_ready == 'true'
+        run: |
+          docker push ${{ steps.release-flags.outputs.image_name }}:latest
+          docker push ${{ steps.release-flags.outputs.image_name }}:${{ github.sha }}
+
+      - name: Skip Docker publish when credentials are missing
+        if: steps.release-flags.outputs.docker_ready != 'true'
+        run: echo "Docker Hub secrets are not configured. Skipping image publish."
 
   deploy:
     runs-on: ubuntu-latest
     needs: build-test-publish
+    if: needs.build-test-publish.outputs.deploy_ready == 'true'
 
     steps:
       - name: Deploy to EC2 over SSH
         uses: appleboy/ssh-action@v1.2.0
         env:
-          IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/ws-devops-todo-api
+          IMAGE_NAME: ${{ needs.build-test-publish.outputs.image_name }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           IMAGE_TAG: ${{ github.sha }}
