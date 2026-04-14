@@ -1,0 +1,65 @@
+<svg width="1440" height="860" viewBox="0 0 1440 860" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Swagger UI preview card</title>
+  <desc id="desc">Styled preview illustration of the Swagger UI page for the To-Do API.</desc>
+  <defs>
+    <linearGradient id="bg" x1="98" y1="70" x2="1330" y2="782" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="180" y1="206" x2="1240" y2="704" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="860" rx="32" fill="url(#bg)"/>
+  <rect x="44" y="42" width="1352" height="776" rx="28" fill="#0B1220" stroke="#1E293B"/>
+  <rect x="44" y="42" width="1352" height="82" rx="28" fill="#0F172A"/>
+  <rect x="44" y="96" width="1352" height="28" fill="#0F172A"/>
+  <circle cx="82" cy="82" r="8" fill="#FB7185"/>
+  <circle cx="110" cy="82" r="8" fill="#F59E0B"/>
+  <circle cx="138" cy="82" r="8" fill="#22C55E"/>
+  <text x="174" y="89" fill="#E2E8F0" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Swagger UI Preview</text>
+  <text x="174" y="116" fill="#94A3B8" font-size="17" font-family="Arial, Helvetica, sans-serif">Interactive API documentation rendered from OpenAPI in Spring Boot</text>
+
+  <rect x="88" y="156" width="1264" height="612" rx="26" fill="url(#panel)" stroke="#1E293B"/>
+
+  <rect x="120" y="190" width="276" height="544" rx="22" fill="#0F172A" stroke="#1E293B"/>
+  <text x="154" y="236" fill="#F8FAFC" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">API Groups</text>
+  <rect x="154" y="264" width="208" height="60" rx="18" fill="#122033" stroke="#1D4ED8"/>
+  <text x="178" y="302" fill="#DBEAFE" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Authentication</text>
+  <rect x="154" y="340" width="208" height="60" rx="18" fill="#132A21" stroke="#22C55E"/>
+  <text x="178" y="378" fill="#DCFCE7" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Todos</text>
+  <rect x="154" y="416" width="208" height="60" rx="18" fill="#2A1C11" stroke="#F59E0B"/>
+  <text x="178" y="454" fill="#FEF3C7" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Health</text>
+  <rect x="154" y="492" width="208" height="60" rx="18" fill="#241531" stroke="#A855F7"/>
+  <text x="178" y="530" fill="#F3E8FF" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">OpenAPI</text>
+  <text x="154" y="600" fill="#94A3B8" font-size="16" font-family="Arial, Helvetica, sans-serif">JWT bearer flow</text>
+  <text x="154" y="626" fill="#94A3B8" font-size="16" font-family="Arial, Helvetica, sans-serif">Request and response schemas</text>
+  <text x="154" y="652" fill="#94A3B8" font-size="16" font-family="Arial, Helvetica, sans-serif">Try-it-out support</text>
+
+  <rect x="430" y="190" width="888" height="102" rx="22" fill="#0F172A" stroke="#1E293B"/>
+  <text x="466" y="233" fill="#F8FAFC" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Authorize</text>
+  <text x="466" y="264" fill="#94A3B8" font-size="17" font-family="Arial, Helvetica, sans-serif">Paste JWT token to test secured endpoints from the browser.</text>
+  <rect x="1088" y="216" width="192" height="48" rx="16" fill="#16A34A"/>
+  <text x="1148" y="247" fill="#F0FDF4" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Connected</text>
+
+  <rect x="430" y="320" width="888" height="126" rx="22" fill="#132A21" stroke="#22C55E"/>
+  <text x="466" y="366" fill="#DCFCE7" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">POST /api/auth/login</text>
+  <text x="466" y="399" fill="#D1FAE5" font-size="17" font-family="Arial, Helvetica, sans-serif">Authenticate user and return access token with role claims.</text>
+  <rect x="1088" y="348" width="192" height="44" rx="16" fill="#15803D"/>
+  <text x="1141" y="377" fill="#F0FDF4" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Try it out</text>
+
+  <rect x="430" y="466" width="888" height="126" rx="22" fill="#122033" stroke="#38BDF8"/>
+  <text x="466" y="512" fill="#DBEAFE" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">GET /api/todos</text>
+  <text x="466" y="545" fill="#BFDBFE" font-size="17" font-family="Arial, Helvetica, sans-serif">List todo items for the signed-in user or all items for admin users.</text>
+  <rect x="1088" y="494" width="192" height="44" rx="16" fill="#0284C7"/>
+  <text x="1141" y="523" fill="#F0F9FF" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Execute</text>
+
+  <rect x="430" y="612" width="888" height="122" rx="22" fill="#2A1C11" stroke="#F59E0B"/>
+  <text x="466" y="658" fill="#FEF3C7" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">PATCH /api/todos/{id}/complete</text>
+  <text x="466" y="691" fill="#FDE68A" font-size="17" font-family="Arial, Helvetica, sans-serif">Mark an item complete and observe validation, DTOs, and ownership checks.</text>
+
+  <rect x="88" y="784" width="1264" height="22" rx="11" fill="#0F172A"/>
+  <text x="100" y="800" fill="#64748B" font-size="14" font-family="Arial, Helvetica, sans-serif">Replace this preview with a real Swagger screenshot after local startup or deployment.</text>
+</svg>

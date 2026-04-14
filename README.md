@@ -34,7 +34,10 @@ Many junior portfolio projects stop at local CRUD APIs and do not show how softw
 
 ## Architecture Diagram
 
-![Architecture](./architecture.png)
+![Architecture Diagram](./architecture.svg)
+
+<details>
+<summary>Mermaid Source</summary>
 
 ```mermaid
 flowchart LR
@@ -53,12 +56,16 @@ flowchart LR
     Terraform --> CF
 ```
 
+</details>
+
 ## Screenshots
 
-Placeholder assets are included so the repository is presentation-ready even before real captures are added.
+Designed preview cards are included so the repository still looks polished before you replace them with real captures from local runs and live CI executions.
 
-![Swagger Placeholder](./docs/screenshots/swagger-placeholder.png)
-![Todo Dashboard Placeholder](./docs/screenshots/todo-dashboard-placeholder.png)
+<p align="center">
+  <img src="./docs/screenshots/swagger-ui-preview.svg" alt="Swagger UI Preview" width="49%" />
+  <img src="./docs/screenshots/github-actions-preview.svg" alt="CI/CD Preview" width="49%" />
+</p>
 
 ## Project Structure
 
@@ -71,7 +78,7 @@ ws-devops-todo-api/
 ├── nginx.conf
 ├── .env.example
 ├── README.md
-├── architecture.png
+├── architecture.svg
 └── .gitignore
 ```
 

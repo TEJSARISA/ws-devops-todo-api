@@ -1,0 +1,67 @@
+<svg width="1440" height="860" viewBox="0 0 1440 860" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub Actions CI/CD preview card</title>
+  <desc id="desc">Styled preview illustration of the GitHub Actions pipeline for build, test, and deploy.</desc>
+  <defs>
+    <linearGradient id="bg" x1="84" y1="62" x2="1328" y2="786" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="860" rx="32" fill="url(#bg)"/>
+  <rect x="44" y="42" width="1352" height="776" rx="28" fill="#0B1220" stroke="#1E293B"/>
+  <rect x="44" y="42" width="1352" height="82" rx="28" fill="#0F172A"/>
+  <rect x="44" y="96" width="1352" height="28" fill="#0F172A"/>
+  <circle cx="82" cy="82" r="8" fill="#FB7185"/>
+  <circle cx="110" cy="82" r="8" fill="#F59E0B"/>
+  <circle cx="138" cy="82" r="8" fill="#22C55E"/>
+  <text x="174" y="89" fill="#E2E8F0" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">CI/CD Workflow Preview</text>
+  <text x="174" y="116" fill="#94A3B8" font-size="17" font-family="Arial, Helvetica, sans-serif">GitHub Actions pipeline for validation, packaging, image publishing, and EC2 deployment</text>
+
+  <rect x="88" y="156" width="1264" height="194" rx="26" fill="#111827" stroke="#1E293B"/>
+  <text x="124" y="204" fill="#F8FAFC" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Pipeline Stages</text>
+
+  <rect x="124" y="228" width="196" height="90" rx="22" fill="#122033" stroke="#38BDF8"/>
+  <text x="152" y="266" fill="#DBEAFE" font-size="21" font-family="Arial, Helvetica, sans-serif" font-weight="700">1. Test</text>
+  <text x="152" y="294" fill="#BFDBFE" font-size="16" font-family="Arial, Helvetica, sans-serif">JUnit + Mockito</text>
+
+  <rect x="346" y="228" width="196" height="90" rx="22" fill="#241531" stroke="#A855F7"/>
+  <text x="374" y="266" fill="#F3E8FF" font-size="21" font-family="Arial, Helvetica, sans-serif" font-weight="700">2. Validate</text>
+  <text x="374" y="294" fill="#E9D5FF" font-size="16" font-family="Arial, Helvetica, sans-serif">Terraform syntax</text>
+
+  <rect x="568" y="228" width="196" height="90" rx="22" fill="#132A21" stroke="#22C55E"/>
+  <text x="596" y="266" fill="#DCFCE7" font-size="21" font-family="Arial, Helvetica, sans-serif" font-weight="700">3. Package</text>
+  <text x="596" y="294" fill="#BBF7D0" font-size="16" font-family="Arial, Helvetica, sans-serif">Build jar + image</text>
+
+  <rect x="790" y="228" width="196" height="90" rx="22" fill="#2A1C11" stroke="#F59E0B"/>
+  <text x="818" y="266" fill="#FEF3C7" font-size="21" font-family="Arial, Helvetica, sans-serif" font-weight="700">4. Deploy</text>
+  <text x="818" y="294" fill="#FDE68A" font-size="16" font-family="Arial, Helvetica, sans-serif">Pull to EC2</text>
+
+  <rect x="1012" y="228" width="196" height="90" rx="22" fill="#1F2937" stroke="#94A3B8"/>
+  <text x="1040" y="266" fill="#E5E7EB" font-size="21" font-family="Arial, Helvetica, sans-serif" font-weight="700">5. Verify</text>
+  <text x="1040" y="294" fill="#CBD5E1" font-size="16" font-family="Arial, Helvetica, sans-serif">Health check</text>
+
+  <line x1="320" y1="273" x2="346" y2="273" stroke="#64748B" stroke-width="4"/>
+  <line x1="542" y1="273" x2="568" y2="273" stroke="#64748B" stroke-width="4"/>
+  <line x1="764" y1="273" x2="790" y2="273" stroke="#64748B" stroke-width="4"/>
+  <line x1="986" y1="273" x2="1012" y2="273" stroke="#64748B" stroke-width="4"/>
+
+  <rect x="88" y="382" width="614" height="352" rx="26" fill="#111827" stroke="#1E293B"/>
+  <text x="124" y="430" fill="#F8FAFC" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Workflow Highlights</text>
+  <rect x="124" y="458" width="542" height="62" rx="18" fill="#0F172A" stroke="#1E293B"/>
+  <text x="152" y="497" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">Push to main triggers automated validation and deployment.</text>
+  <rect x="124" y="536" width="542" height="62" rx="18" fill="#0F172A" stroke="#1E293B"/>
+  <text x="152" y="575" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">Docker Hub stores both latest and commit SHA image tags.</text>
+  <rect x="124" y="614" width="542" height="86" rx="18" fill="#0F172A" stroke="#1E293B"/>
+  <text x="152" y="652" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">EC2 pulls the new image and recreates the app container</text>
+  <text x="152" y="680" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">without rebuilding on the target host.</text>
+
+  <rect x="736" y="382" width="616" height="352" rx="26" fill="#111827" stroke="#1E293B"/>
+  <text x="772" y="430" fill="#F8FAFC" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Suggested Real Screenshot Slot</text>
+  <rect x="772" y="458" width="544" height="214" rx="24" fill="#0F172A" stroke="#334155" stroke-dasharray="10 10"/>
+  <text x="880" y="553" fill="#64748B" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">GitHub Actions Run Screenshot</text>
+  <text x="930" y="590" fill="#64748B" font-size="18" font-family="Arial, Helvetica, sans-serif">Replace after first successful deployment</text>
+  <rect x="772" y="690" width="544" height="18" rx="9" fill="#0F172A"/>
+
+  <text x="96" y="792" fill="#64748B" font-size="14" font-family="Arial, Helvetica, sans-serif">This designed preview keeps the repository polished until you swap in a real workflow run image.</text>
+</svg>
