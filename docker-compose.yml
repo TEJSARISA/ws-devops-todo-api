@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ws-todo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-todo_db}
+      POSTGRES_USER: ${POSTGRES_USER:-todo_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-todo_password}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-todo_user} -d ${POSTGRES_DB:-todo_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - todo-network
+
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    image: ws-devops-todo-api:local
+    container_name: ws-devops-todo-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-todo_db}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-todo_user}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-todo_password}
+      JWT_SECRET: ${JWT_SECRET:-TXktd3MtZGV2b3BzLXRvZG8tYXBpLWJhc2U2NC1zZWNyZXQtbXVzdC1iZS1vdmVycmlkZGVuLXRvLXByb2Q=}
+      JWT_EXPIRATION_MINUTES: ${JWT_EXPIRATION_MINUTES:-60}
+      APP_CORS_ALLOWED_ORIGINS: ${APP_CORS_ALLOWED_ORIGINS:-http://localhost:3000,http://localhost:8080}
+      APP_ADMIN_EMAILS: ${APP_ADMIN_EMAILS:-admin@ws.local}
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    networks:
+      - todo-network
+
+volumes:
+  postgres_data:
+
+networks:
+  todo-network:
+    driver: bridge

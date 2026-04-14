@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.idea/
+.vscode/
+*.iml
+
+app/target/
+app/.mvn/
+
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/crash.log
+
+docs/screenshots/*.generated.png

@@ -1,0 +1,12 @@
+aws_region         = "ap-south-1"
+instance_type      = "t3.micro"
+key_name           = "replace-with-your-keypair"
+allowed_ssh_cidr   = "0.0.0.0/0"
+app_image          = "your-dockerhub-user/ws-devops-todo-api:latest"
+postgres_db        = "todo_db"
+postgres_user      = "todo_user"
+postgres_password  = "change-me"
+jwt_secret         = "replace-with-a-long-base64-encoded-secret"
+jwt_expiration_minutes = 60
+admin_emails       = ["admin@example.com"]
+cors_allowed_origins = ["http://localhost:3000", "http://localhost:8080"]
